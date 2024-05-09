@@ -23,7 +23,7 @@
       const password = document.getElementById('password').value;
 
       // Send the user input to the server for IRCTC login automation
-      const response = await fetch('/login', {
+      const response = await fetch('/api/connect', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

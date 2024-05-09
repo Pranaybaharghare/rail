@@ -1,7 +1,6 @@
 import irctcLogin from "../script/puppeteer.script.js";
 import asyncHandler from "../utils/asyncHandler.js";
-const puppeteer = require('puppeteer');
-
+import puppeteer from "puppeteer";
 const connectIrctc = asyncHandler(async(req,res)=>{
     const { username, password } = req.body;
     try {

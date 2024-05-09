@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
-const path = require('path');
+import path from "path";
 
 const app = express();
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 //middlewares
 app.use(cors({
@@ -16,8 +17,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 //route imports
-import connectRoute from "./routes/connect.route";
+import connectRoute from "./routes/connect.route.js";
 
 
 //route declaration
-app.use("/api/connect/",connectRoute);
+app.use("/api",connectRoute);
+
+export default app;
