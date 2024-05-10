@@ -1,3 +1,19 @@
-<p>
-  formfill works!
-</p>
+<div class="h-screen flex flex-col justify-center">
+  <div class="mx-auto border  bg-slate-400 p-6 h-3/5 w-3/5 rounded-xl">
+    <div class="pb-12 pt-6 px-5">
+      <h1 class="font-sans font-bold text-3xl ">Login Details</h1>
+    </div>
+    <div class="px-5">
+      <h1 class="font-sans font-semibold ">Step 1 of 4 </h1>
+    </div>
+    <div class="flex flex-col px-5 py-2 ">
+      <label for="username" class="font-sans font-bold">username</label>
+      <input type="text" class=" p-2 rounded-lg w-60 h-10" [(ngModel)]="username">
+      <label for="username" class="mt-2 font-sans font-bold">password</label>
+      <input type="text" class=" p-2 rounded-lg w-60 h-10" [(ngModel)]="password">
+    </div>
+    <div class="px-5 py-2">
+      <button class="bg-blue-200 px-3 py-1 rounded-lg font-sans font-bold" (click)="connect()" >Connect</button>
+    </div>
+  </div>
+</div>

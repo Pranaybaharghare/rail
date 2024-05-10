@@ -60,7 +60,8 @@
         },
         "serve": {
           "options": {
-            "port": 5200
+            "port": 5200,
+            "proxyConfig": "proxy.conf.json"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
