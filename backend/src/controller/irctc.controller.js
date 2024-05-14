@@ -16,12 +16,12 @@ const connectIrctc = asyncHandler(async (req, res) => {
         // await page.emulate(puppeteer.devices['Desktop'])
         // Call the irctcLogin function and pass the browserWSEndpoint
         // Store the browser WebSocket endpoint in an environment variable
-        process.env.BROWSER_WS_ENDPOINT = browser.wsEndpoint();
-        const browserWSEndpoint = process.env.BROWSER_WS_ENDPOINT;
+        // process.env.BROWSER_WS_ENDPOINT = browser.wsEndpoint();
+        // const browserWSEndpoint = process.env.BROWSER_WS_ENDPOINT;
 
         // Connect to the existing browser instance using the WebSocket endpoint
-        const existingBrowser = await puppeteer.connect({ browserWSEndpoint });
-        await irctcLogin(username, password, existingBrowser);
+        // const existingBrowser = await puppeteer.connect({ browserWSEndpoint });
+        await irctcLogin(username, password, browser);
         res.send('IRCTC login successful');
     } catch (error) {
         res.status(500).send(`Error during IRCTC login: ${error.message}`);

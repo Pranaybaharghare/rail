@@ -4,7 +4,7 @@ const irctcConnectScript = asyncHandler(async (username, password, browser) => {
   try {
     // Connect to the existing browser instance
     const page = await browser.pages(); // Get all open pages in the browser
-    const newPage = await browser.newPage();
+    const newPage = await page[0].newPage();
 
     await newPage.setViewport({ width: 1920, height: 1080 });
 
