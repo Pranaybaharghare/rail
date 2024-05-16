@@ -1,40 +1,35 @@
-// Get the login credentials from browser storage
 chrome.storage.local.get(['username', 'password'], (result) => {
   const { username, password } = result;
+  
+  const waitForLoginButton = setInterval(() => {
+      const loginButton = document.querySelector('a.search_btn.loginText');
+      if (loginButton) {
+          clearInterval(waitForLoginButton);
+          loginButton.click();
 
-  // Function to find the login button and click it
-  function findAndClickLoginButton() {
-    const loginButton = document.querySelector('a.search_btn.loginText');
-    if (loginButton) {
-      loginButton.click();
+          const waitForLoginForm = setInterval(() => {
+              const loginForm = document.querySelector('form.novalidate');
+              if (loginForm) {
+                  clearInterval(waitForLoginForm);
 
-      // After clicking the login button, wait for the login form to be available
-      const waitForLoginForm = new Promise((resolve) => {
-        const observer = new MutationObserver(() => {
-          const loginForm = document.querySelector('form.novalidate');
-          if (loginForm) {
-            observer.disconnect(); // Stop observing once the login form is found
-            resolve(loginForm); // Resolve the promise with the login form
-          }
-        });
+                  try {
+                      let usernameInput = loginForm.querySelector('input[formcontrolname="userid"]');
+                      let passwordInput = loginForm.querySelector('input[formcontrolname="password"]');
+                      
+                      if (usernameInput && passwordInput) {
+                          usernameInput.value = "hello";
+                          passwordInput.value = "coder";
 
-        observer.observe(document.body, { childList: true, subtree: true }); // Start observing the entire body
-      });
-
-      return waitForLoginForm.then((loginForm) => {
-        // Fill the login form
-        let usernameInput = loginForm.querySelector('input[name="userName"]');
-        let passwordInput = loginForm.querySelector('input[name="password"]');
-        usernameInput.value = username;
-        passwordInput.value = password;
-
-        // Submit the login form
-        const submitBtn = loginForm.querySelector('button[type="submit"]');
-        submitBtn.click();
-      });
-    }
-  }
-
-  // Call the function to start the login process
-  findAndClickLoginButton().catch(console.error);
+                          const submitBtn = loginForm.querySelector('#pb_sign_in');
+                          submitBtn.click();
+                      } else {
+                          console.error('Username or password input field not found');
+                      }
+                  } catch (error) {
+                      console.error('Error filling in login form:', error);
+                  }
+              }
+          }, 100);
+      }
+  }, 100);
 });
