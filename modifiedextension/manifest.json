@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.irctc.co.in/nget/train-search"],
-      "js": ["content.js"]
+      "js": ["popup.js"]
     }
   ],
   "background": {
